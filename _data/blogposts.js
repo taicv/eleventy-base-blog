@@ -23,7 +23,6 @@ async function getAllBlogposts() {
           Accept: "application/json",
         },
         body: 'query Article {articles{data{id attributes{title,content,published,author,slug}}}}',
-        }),
       });
 
       // store the JSON response when promise resolves
@@ -39,7 +38,7 @@ async function getAllBlogposts() {
       }
 
       // update blogpost array with the data from the JSON response
-      blogposts = blogposts.concat(response.data.articles);
+      blogposts = blogposts.concat(response.data.articles.data);
 
       // prepare for next query
       recordsToSkip += recordsPerQuery;
@@ -57,11 +56,11 @@ async function getAllBlogposts() {
   const blogpostsFormatted = blogposts.map((item) => {
     return {
       id: item.id,
-      title: item.title,
-      slug: item.slug,
-      body: item.content,
-      author: item.author,
-      date: item.published     
+      title: item.attributes.title,
+      slug: item.attributes.slug,
+      body: item.attributes.content,
+      author: item.attributes.author,
+      date: item.attributes.published       
     };
   });
 
