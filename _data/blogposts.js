@@ -22,8 +22,7 @@ async function getAllBlogposts() {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
-        body: JSON.stringify({
-          query: `Article {articles{data{id attributes{title,content,published,author,slug}}}}`,
+        body: 'query Article {articles{data{id attributes{title,content,published,author,slug}}}}',
         }),
       });
 
