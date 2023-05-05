@@ -22,7 +22,9 @@ async function getAllBlogposts() {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
-        body: 'query Article {articles{data{id attributes{title,content,published,author,slug}}}}',
+        body: JSON.stringify({
+              query: "query Article {articles{data{id attributes{title,content,published,author,slug}}}}"
+            }),
       });
 
       // store the JSON response when promise resolves
